@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#main{
+				width: 1600px;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id=main></div>
+		</div>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="axios.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="echarts.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var config={
+		"el":"#app",
+		"mounted":function(){
+			var serverUrl="http://localhost:9002/getDate"
+			axios.get(serverUrl)
+			.then(function(response){
+				console.log(response)
+				var controllerData=response.data;
+				var xData=[]
+				var yData=[]
+				//遍历controller返回的数据
+				//[{date:2022-03-03,total:1},{date:2022-03-04,total:2}]
+				for (var i=0;i<controllerData.length;i++){
+					var dateTongjiEntity=controllerData[i]
+					xData[i]=dateTongjiEntity.date
+					yData[i]=dateTongjiEntity.total					
+				}
+				console.log(xData)
+				console.log(yData)
+				var chartDom = document.getElementById('main');
+				var myChart = echarts.init(chartDom);
+				var option;
+				
+				option = {
+				  xAxis: {
+				    type: 'category',
+				    data: xData
+				  },
+				  yAxis: {
+				    type: 'value'
+				  },
+				  series: [
+				    {
+				      data: yData,
+				      type: 'line'
+				    }
+				  ]
+				};
+				
+				option && myChart.setOption(option);
+			})
+			.catch(function(e){
+				console.log("联网失败了")
+				console.log(e)
+			})
+		}
+	}
+	var vue=new Vue(config)
+</script>
+</html>

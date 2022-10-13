@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input v-model="itemName" />{{itemName}}
+			<button v-on:click="insert">添加</button>
+			<table>
+				<tr v-for="item in itemList">
+					<td>
+						{{item}}
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var config={
+			"el":"#app",
+			"data":{
+				"itemName":"请输入名称",
+				"itemList":["测试数据"]
+			},
+			"methods":{
+				"insert":function(){
+					window.alert(this.itemName);
+					//把输入框中的内容添加到itemList中
+					this.itemList.push(this.itemName)
+				}
+			}
+		}
+		var vue=new Vue(config);
+	</script>
+</html>

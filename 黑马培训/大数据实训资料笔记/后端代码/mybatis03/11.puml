@@ -1,0 +1,69 @@
+@startuml
+class com.tedu.mybatis03.pojo.ItemOrderEntity {
+~ Integer orderId
+~ String itemName
+~ Integer userId
++ Integer getOrderId()
++ void setOrderId(Integer)
++ String getItemName()
++ void setItemName(String)
++ Integer getUserId()
++ void setUserId(Integer)
+}
+class com.tedu.mybatis03.pojo.CategoryEntity {
+~ Integer id
+~ String name
++ Integer getId()
++ void setId(Integer)
++ String getName()
++ void setName(String)
+}
+class com.tedu.mybatis03.pojo.UsersEntity {
+~ Integer id
+~ String username
+~ String password
+~ String gender
+~ Integer age
+~ String city
++ Integer getId()
++ void setId(Integer)
++ String getUsername()
++ void setUsername(String)
++ String getPassword()
++ void setPassword(String)
++ String getGender()
++ void setGender(String)
++ Integer getAge()
++ void setAge(Integer)
++ String getCity()
++ void setCity(String)
+}
+class com.tedu.mybatis03.pojo.DateTongjiEntity {
+~ String date
+~ Integer total
++ String getDate()
++ void setDate(String)
++ Integer getTotal()
++ void setTotal(Integer)
+}
+class com.tedu.mybatis03.pojo.ItemEntity {
+~ Integer id
+~ Integer categoryId
+~ String name
+~ Integer price
+~ String image
+~ String itemDesc
++ Integer getId()
++ void setId(Integer)
++ Integer getCategoryId()
++ void setCategoryId(Integer)
++ String getName()
++ void setName(String)
++ Integer getPrice()
++ void setPrice(Integer)
++ String getImage()
++ void setImage(String)
++ String getItemDesc()
++ void setItemDesc(String)
+}
+@enduml

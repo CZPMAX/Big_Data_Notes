@@ -1,0 +1,20 @@
+server:
+  port: 9002
+
+spring:
+  datasource:
+#      有的mysql如5.0 下面必须改成com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver        
+        url: jdbc:mysql://192.168.65.161:3306/mall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8
+        username: root        
+        password: 'root'
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+logging:
+  file:
+    path: ./logs
+  level:
+    com.tedu: debug
+
+

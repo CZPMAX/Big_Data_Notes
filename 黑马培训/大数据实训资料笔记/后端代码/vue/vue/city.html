@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#main{
+				width: 1600px;
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id="main">
+				
+			</div>
+		</div>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="axios.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="echarts.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+	var config={
+		"el":"#app",
+		"mounted":function(){
+			//window.alert("联网")
+			//联网第1步：准备的url
+			var serverUrl="http://localhost:9002/getCity"
+			//联网第2步:向服务器发请求
+			//联网失败了执行catch(),联网成功了执行then()
+			
+			//then中的函数是axios联网框架调，
+			//框架在调用then中的函数时会传过来response
+			axios.get(serverUrl)
+			.then(function(response){
+				//联网第3步：处理服务器返回的结果
+				//打日志
+				console.log(response)
+				//response有6个属性,data属性放的是controller返回的数据
+				var controllerData=response.data;
+				console.log(controllerData);
+				//3.1 得到x轴,y轴
+				var xData=[]
+				var yData=[]
+				//controllerData=[{city:新乡,total:2},{city:郑州,total:1}]
+				//遍历服务器返回的数据
+				for (var i=0;i<controllerData.length;i++){
+					var data=controllerData[i]
+					xData[i]=data.city;
+					yData[i]=data.total;					
+				}
+				console.log(xData);
+				console.log(yData);
+				//3.2 用echarts显示数据
+				var chartDom = document.getElementById('main');
+				var myChart = echarts.init(chartDom);
+				var option;
+				
+				option = {
+				  xAxis: {
+				    type: 'category',
+				    data: xData
+				  },
+				  yAxis: {
+				    type: 'value'
+				  },
+				  series: [
+				    {
+				      data: yData,
+				      type: 'bar',
+				      showBackground: true,
+				      backgroundStyle: {
+				        color: 'rgba(180, 180, 180, 0.2)'
+				      }
+				    }
+				  ]
+				};
+				
+				option && myChart.setOption(option);
+			})
+			.catch(function(e){
+				console.log("联网失败了");
+				console.log(e);
+			});
+			
+		}
+	}
+	
+	var vue=new Vue(config);
+</script>
+</html>

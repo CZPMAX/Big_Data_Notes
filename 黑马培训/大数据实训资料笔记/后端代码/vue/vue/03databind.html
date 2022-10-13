@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<table>
+				<!--遍历数组itemList,取出的数据放在item中-->
+				<tr v-for="item in itemList">
+					<td>
+						<!--占位符-->
+						{{item}}
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr v-for="item in itemList">
+					<td>
+					{{item.name}}{{item.price}}	
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//1,创建配置对象
+	var config={
+		"el":"#app",
+		"data":{
+			"itemList":[
+				{"name":"mate10","price":"3000"},
+				{"name":"mate20","price":"4000"}
+			]
+		}
+	}
+	//2,启动框架
+	var vue=new Vue(config);
+</script>
+</html>

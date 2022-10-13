@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" v-on:click="login">
+				登录
+			</button>
+		</div>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//1,创建配置对象
+	var config={
+		"el":"#app",
+		"methods":{
+			"login":function(){
+				window.alert("login")
+			}
+		}
+	}
+	//2,启动框架
+	var vue=new Vue(config)
+</script>
+</html>

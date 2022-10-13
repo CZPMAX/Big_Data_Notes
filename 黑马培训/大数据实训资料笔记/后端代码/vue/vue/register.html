@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="username" /><br>
+			<input type="text" v-model="password" /><br>
+			<input type="text" v-model="gender" /><br>
+			<input type="text" v-model="age" /><br>
+			<input type="text" v-model="city" /><br>
+			<button type="button" v-on:click="register"> 注册</button>
+		</div>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="axios.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var config={
+		"el":"#app",
+		"data":{
+			"username":"输入用户名",
+			"password":"输入密码",
+			"gender":"输入性别",
+			"age":"输入年龄",
+			"city":"输入城市"
+		},
+		"methods":{
+			"register":function(){
+				//联网把数据发给服务器
+				var serverUrl="http://localhost:9002/register"
+				+"?username="+this.username
+				+"&password="+this.password
+				+"&gender="+this.gender
+				+"&age="+this.age
+				+"&city="+this.city
+				//测试拼出来的url对不对
+				console.log(serverUrl)
+				axios.get(serverUrl)
+				.then(function(response){
+					console.log("联网成功");
+					window.alert(response.data)
+				})
+				.catch(function(e){
+					console.log("联网失败");
+					console.log(e)
+				})
+			}
+		}
+	}
+	var vue=new Vue(config)
+</script>
+</html>

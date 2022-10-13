@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<table >				
+				<tr>
+					<td v-for="category in categoryList" v-on:click="selectItem(category.id)">
+						{{category.name}}
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr v-for="item in itemList">
+					<td>{{item.name}}<br>
+					<!--标签的属性值来自vue,属性名前加v-bind-->
+					<img width=200 height="200" v-bind:src=item.image><br>
+					{{item.price}}<br>
+					{{item.itemDesc}}
+					
+					<br>
+					<button type="button" v-on:click="buy(item.name)">购买</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="axios.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var config={
+		"el":"#app",
+		"data":{
+			"categoryList":[],
+			"itemList":[]
+		},
+		"methods":{
+			"buy":function(name){
+				var serverUrl="http://localhost:9002/item/insert?itemName="+name+"&userId=8"
+				axios.get(serverUrl)
+				.then(function(response){
+					var controllerData=response.data;
+					window.alert(controllerData)
+				})
+				.catch(function(e){
+					console.log(e)
+				})
+			},
+			"selectItem":function(categoryId){
+				var serverUrl="http://localhost:9002/getItemById?categoryId="+categoryId
+				axios.get(serverUrl)
+				.then(function(response){
+					var controllerData=response.data
+					//在then中访问data中的属性，要加this.Vue
+					this.vue.itemList=controllerData
+				})
+				.catch()
+			}
+		},
+		"mounted":function(){
+			console.log("自动运行")
+			this.selectItem(1)
+			
+			//联网取商品分类
+			var serverUrl="http://localhost:9002/getCategory"
+			axios.get(serverUrl)
+			.then(function(response){
+				console.log(response)
+				//response中的data属性放的是controller返回的数据
+				var controllerData=response.data;
+				//把数据赋值给配置对象中data中的categoryList
+				//在then中访问data中的属性，要加this.vue
+				this.vue.categoryList=controllerData
+			})
+			.catch(function(e){
+				console.log("联网失败")
+				console.log(e)
+			});
+		}
+	}
+	var vue=new Vue(config)
+</script>
+</html>

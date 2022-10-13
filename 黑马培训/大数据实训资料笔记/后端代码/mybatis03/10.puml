@@ -1,0 +1,22 @@
+@startuml
+class com.tedu.mybatis03.controller.ItemController {
+~ ItemMapper itemMapper
++ List<ItemEntity> getItemById(Integer)
+}
+class com.tedu.mybatis03.controller.UsersController {
+~ UsersMapper usersMapper
++ String register(UsersEntity)
+}
+class com.tedu.mybatis03.controller.CategoryController {
+~ CategoryMapper categoryMapper
++ List<CategoryEntity> getCategory()
+}
+class com.tedu.mybatis03.controller.DateController {
+~ DateTongjiMapper dateTongjiMapper
++ List<DateTongjiEntity> getDate()
+}
+class com.tedu.mybatis03.controller.ItemOrderController {
+~ ItemOrderMapper itemOrderMapper
++ String insert(ItemOrderEntity)
+}
+@enduml

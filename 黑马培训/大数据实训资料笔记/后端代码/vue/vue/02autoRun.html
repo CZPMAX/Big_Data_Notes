@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//1架构师写框架
+		//定义一个类
+		function Vue(config){
+			//1,从配置对象中找到函数
+			var fun=config.mounted;
+			//2,在网页加载完后运行函数
+			window.onload=fun;
+		}
+		
+		//2程序员用框架
+		//2.1 创建配置对象
+		var config={
+			"mounted":function(){
+				//在屏幕上弹出文字
+				window.alert("你好")
+			}
+		}
+		//2.2 启动框架
+		var vue=new Vue(config);
+	</script>
+</html>
