@@ -319,8 +319,8 @@ print(10 != 3)  #True
 ```python
 print(0 and 3) #0
 print(2 and 3 and 10) #10
-print(0 or 3) #3
-print(2 or 0 or 10) #2
+print(0 or  3) #3
+print(2 or  0 or 10) #2
 ```
 
 ![image-20220726222726685](E:\黑马培训\assets\image-20220726222726685.png)
@@ -401,7 +401,7 @@ print(msg)
 
    哪里不会点哪里
 
-    断点一般加在第一行有效代码处，这样可以查看整个程序的执行流程
+   断点一般加在第一行有效代码处，这样可以查看整个程序的执行流程
 
 2. 如何启动Debug断点调试:  在代码编辑区，右键，Debug as ...
 
