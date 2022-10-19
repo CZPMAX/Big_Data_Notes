@@ -14,13 +14,13 @@
 
 ==图示==
 
-![3、sqoop导入数据到ods层几种方式](E:\黑马培训\Hadoop生态圈\assets\3、sqoop导入数据到ods层几种方式.png)
+![3、sqoop导入数据到ods层几种方式](.\assets\3、sqoop导入数据到ods层几种方式.png)
 
-![image-20220927224133026](E:\黑马培训\Hadoop生态圈\assets\image-20220927224133026.png)
+![image-20220927224133026](.\assets\image-20220927224133026.png)
 
-![image-20220927224147014](E:\黑马培训\Hadoop生态圈\assets\image-20220927224147014.png)
+![image-20220927224147014].\assets\image-20220927224147014.png)
 
-![image-20220928201728205](E:\黑马培训\Hadoop生态圈\assets\image-20220928201728205.png)
+![image-20220928201728205](.\assets\image-20220928201728205.png)
 
 ## 1. 数据同步问题
 
